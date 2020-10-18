@@ -11,6 +11,7 @@ const SearchBar = (props) => {
                         placeholder='Search'
                         value={props.term}
                         onChangeText={text => props.onTermChange(text)}
+                        onSubmitEditing={() => props.onTermSubmit()}
             />
         </View>
     );
