@@ -20,31 +20,33 @@ const searchScreen = () => {
                     location: 'San Francisco'
                 }
             });
-            console.log("iskander", response.data.businesses)
             setResults(response.data.businesses);
         } catch (error) {
             setErrorMessage(error.message);
-            console.log("error => ", error);
+            console.log("error => ", error.response.data);
         }
-    }
+    };
     useEffect(() => {
-        Api().then(r => console.log("hello"));
+        Api()
     }, [])
     const filterResultByPrice = (price) => {
         return results.filter(v => v.price === price);
-    }
+    };
     return (
         <View style={{marginLeft: 2, flex: 1}} showsVerticalScrollIndicator={false}>
             <SearchBar onTermChange={setTerm} onTermSubmit={Api} term={term} searchApi={Api}/>
             {errorMessage ? <Text> {errorMessage} </Text> : null}
             <ScrollView>
-                <Results results={filterResultByPrice('$')} title='Cost Effective'/>
-                <Results results={filterResultByPrice('$$')} title='Bit Pricier'/>
-                <Results results={filterResultByPrice('$$$')} title='Big Spender'/>
+                {filterResultByPrice('$').length ? <Results results={filterResultByPrice('$')} title='Cost Effective' /> : null }
+                {filterResultByPrice('$$').length ? <Results results={filterResultByPrice('$$')} title='Bit Pricier' /> : null }
+                {filterResultByPrice('$$$').length ? <Results results={filterResultByPrice('$$$')} title='Big Spender' /> : null }
+{/*                <Results results={filterResultByPrice('$')} title='Cost Effective' />
+                <Results results={filterResultByPrice('$$')} title='Bit Pricier' />
+                <Results results={filterResultByPrice('$$$')} title='Big Spender' />*/}
             </ScrollView>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {

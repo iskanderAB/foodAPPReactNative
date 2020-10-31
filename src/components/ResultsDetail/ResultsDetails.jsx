@@ -8,7 +8,7 @@ const ResultsDetail = ({result}) => {
             <Text style={styles.name}>{result.name}</Text>
             <Text style={styles.details}>{result.rating} Stars , {result.review_count} reviews </Text>
     </View>
-}
+};
 const styles = StyleSheet.create({
     container : {
         paddingTop : 5 ,
